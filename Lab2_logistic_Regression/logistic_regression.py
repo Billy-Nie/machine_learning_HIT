@@ -38,6 +38,7 @@ def plot_data(data_l, w, title, n = 2, lr = False):
     plt.ylabel("x2")
     plt.title(title)
     plt.legend()
+    plt.savefig("Latex-Template/src/ML/figures/train_data_new.jpg")
     plt.show()
 
 def read_data():
@@ -99,6 +100,7 @@ class LR:
             plt.legend()
             plt.title("Cost as function of iterations")
             plt.ylabel("cost")
+            plt.savefig("Latex-Template/src/ML/figures/cost_New_uci.jpg")
             plt.show()
 
             plt.scatter(iteration_l, FPV_l)
@@ -111,6 +113,7 @@ class LR:
             plt.xlabel("iterations")
             plt.ylabel("y")
             plt.title("model evaluation factors")
+            plt.savefig("Latex-Template/src/ML/figures/FPV_New_uci.jpg")
             plt.show()
         else:
             plt.plot(iteration_l, cost_l, label="cost")
@@ -118,6 +121,7 @@ class LR:
             plt.legend()
             plt.title("Cost as function of iterations")
             plt.ylabel("cost")
+            plt.savefig("Latex-Template/src/ML/figures/cost_reg_no_bey_up.jpg")
             plt.show()
 
             plt.plot(iteration_l, FPV_l, label="FPV")
@@ -126,6 +130,7 @@ class LR:
             plt.xlabel("iterations")
             plt.ylabel("y")
             plt.title("model evaluation factors")
+            plt.savefig("Latex-Template/src/ML/figures/FPV_log_no_bey_up.jpg")
             plt.show()
 
 
@@ -141,8 +146,8 @@ class LR:
         :return: the weight
         '''
 
-        alpha = 0.01#learning rate for self generated data
-        #alpha = 0.001 # learning rate for uci data
+        #alpha = 0.01#learning rate for self generated data
+        alpha = 0.001 # learning rate for uci data
         max_iter = 1000 #最大循环数
         cost_l = []
         iteration_plot = []
@@ -204,7 +209,7 @@ class LR:
         print("F1 score:" + str(F1))
 
     def newton(self):
-        max_iter = 20 #最大循环数
+        max_iter = 8 #最大循环数
         cost_l = []
         iteration_plot = []
         FPV_l = []
@@ -345,10 +350,10 @@ if __name__ == "__main__":
     # print("F1 score:" + str(F1))
     # plot_data(plot_data_l, w, "Performance unser a new set of data", 2, True)
 
-    # data, label = read_data()
-    # uci_lr = LR(data, label)
-    #uci_lr.gradAscent()
-    # uci_lr.newton()
+    data, label = read_data()
+    uci_lr = LR(data, label)
+    # uci_lr.gradAscent()
+    uci_lr.newton()
     #uci_lr.gradAscentReg()
     #uci_lr.newtonReg()
 
